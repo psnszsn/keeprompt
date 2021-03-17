@@ -1,0 +1,18 @@
+[package]
+name = "keeprompt"
+version = "0.1.0"
+authors = ["Vlad Pănăzan <vlad@panazan.ro>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+itertools = "0.10.0"
+keepass = "0.4.7"
+pinentry = "0.3.0"
+popol = "0.4.0"
+secrecy = "0.7.0"
+serde = "1.0.124"
+serde_derive = "1.0.124"
+toml = "0.5.8"
+xdg = "2.2.0"
