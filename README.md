@@ -1,5 +1,5 @@
-# Keeprompt
-This allows you to use a KeePass database like you whould use pass.
+# KeePrompt
 
-Select a password with dmenu and copy it to clipboard.
+I wrote this in order to use a KeePass database like you whould use pass.
 
+This uses pinentry to prompt you for the master password, unlocks the database, propmts you to select a password using dmenu and finally copies it to clipboard using xclip/wl-copy.
