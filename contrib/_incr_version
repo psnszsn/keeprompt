@@ -1,0 +1,14 @@
+#!/bin/sh -eu
+old_version="$1"
+new_version="$2"
+
+if [ "$new_version" != "${new_version#v}" ]
+then
+	echo "Error: The new version shouldn't be prefixed with a \"v\"." >&2
+	exit 1
+fi
+
+sed Cargo.toml -e "s/^version = .*/version = \"${new_version}\"/g"
+
+git add Cargo.toml
+git commit -m "Update version to $new_version"
