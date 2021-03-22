@@ -1,6 +1,6 @@
 [package]
 name = "keeprompt"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Vlad Pănăzan <vlad@panazan.ro>"]
 edition = "2018"
 

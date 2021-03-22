@@ -8,7 +8,7 @@ then
 	exit 1
 fi
 
-sed Cargo.toml -e "s/^version = .*/version = \"${new_version}\"/g"
+sed -i Cargo.toml -e "s/^version = .*/version = \"${new_version}\"/g"
 
 git add Cargo.toml
 git commit -m "Update version to $new_version"
