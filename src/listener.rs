@@ -50,8 +50,11 @@ pub fn connect() -> io::Result<()> {
 }
 
 pub fn run(config: &super::Config, pwds: &super::PwdsHM) -> io::Result<()> {
-    let _ = std::fs::remove_file("/tmp/rust-uds.sock").unwrap();
-    let listener = UnixListener::bind("/tmp/rust-uds.sock").unwrap();
+    let path = Path::new("/tmp/rust-uds.sock");
+    if path.exists() {
+        let _ = std::fs::remove_file(path).unwrap();
+    }
+    let listener = UnixListener::bind(path).unwrap();
     listener.set_nonblocking(true).unwrap();
 
     let mut sources = popol::Sources::new();
