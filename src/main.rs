@@ -50,7 +50,7 @@ fn main() {
 fn select_pwd(config: &Config, pwds: &HashMap<String, keepass::Entry>) {
     let selected = dmenu::run(&pwds, config.dmenu.clone());
     // println!("{:#?}", selected);
-    clipboard::copy(selected.get_password().unwrap());
+    clipboard::copy(selected.get_password().unwrap(), true);
 }
 
 pub fn unlock_db(config: &Config) -> Database {

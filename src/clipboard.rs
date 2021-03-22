@@ -15,17 +15,19 @@ fn is_program_in_path(program: &str) -> bool {
     false
 }
 
-pub fn copy(s: &str) {
+pub fn copy(s: &str, paste_once: bool) {
     if is_program_in_path("wl-copy") {
         let mut child = Command::new("wl-copy")
+            .arg(if paste_once { "--paste-once" } else { "" })
             .stdin(Stdio::piped())
             .spawn()
             .expect("failed to execute process");
-        child
-            .stdin
-            .take()
-            .unwrap()
-            .write_all(s.as_bytes())
-            .unwrap();
+        child.stdin.take().unwrap().write_all(s.as_bytes()).unwrap();
+    } else if is_program_in_path("xclip") {
+        let mut child = Command::new("xclip")
+            .stdin(Stdio::piped())
+            .spawn()
+            .expect("failed to execute process");
+        child.stdin.take().unwrap().write_all(s.as_bytes()).unwrap();
     };
 }
