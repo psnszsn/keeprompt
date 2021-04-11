@@ -8,44 +8,9 @@ use std::io::prelude::*;
 use std::path::{Path, PathBuf};
 use std::{io, net};
 
-// struct Listener {
-//     path: PathBuf,
-//     listener: UnixListener,
-// }
-
-// impl Listener {
-//     fn bind(path: impl AsRef<Path>) -> std::io::Result<Self> {
-//         let path = path.as_ref().to_owned();
-//         let _ = std::fs::remove_file(&path).unwrap();
-//         UnixListener::bind(&path).map(|listener| Listener { path, listener })
-//     }
-// }
-
-// impl Drop for Listener {
-//     fn drop(&mut self) {
-//         // There's no way to return a useful error here
-//         let _ = std::fs::remove_file(&self.path).unwrap();
-//     }
-// }
-
-// impl std::ops::Deref for Listener {
-//     type Target = UnixListener;
-
-//     fn deref(&self) -> &Self::Target {
-//         &self.listener
-//     }
-// }
-
-fn handle_client(stream: &UnixStream) {
-    let stream = BufReader::new(stream);
-    for line in stream.lines() {
-        println!("{:#?}", line);
-    }
-}
-
 pub fn connect() -> io::Result<()> {
     let mut stream = UnixStream::connect("/tmp/rust-uds.sock")?;
-    stream.write(b"pingg")?;
+    stream.write_all(b"pingg")?;
     Ok(())
 }
 

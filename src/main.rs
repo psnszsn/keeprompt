@@ -38,7 +38,7 @@ fn main() {
 
     println!("{:#?}", config);
 
-    if let Ok(_) = listener::connect() {
+    if listener::connect().is_ok(){
         return;
     }
     let db = unlock_db(&config);
